@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
-from .models import Article
-from .serializers import ArticleSerializer
+from .models import *
+from .serializers import *
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -20,6 +20,27 @@ from django.shortcuts import get_object_or_404
 class ArticleModelViewset(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
+
+
+class MemberModelViewSet(viewsets.ModelViewSet):
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
+
+
+class GroupModelViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+class MembershipModelViewSet(viewsets.ModelViewSet):
+    queryset = Membership.objects.all()
+    serializer_class = MembershipSerializer
+
+#
+# class MembershipCreateAPIView(generics.GenericAPIView, mixins.CreateModelMixin):
+#     model = Membership
+#     queryset = Membership.objects.all()
+#     serializer_class = MembershipSerializer
 
 
 class ArticleGenericViewset(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin,

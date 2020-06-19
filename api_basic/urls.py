@@ -4,6 +4,10 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('article', views.ArticleModelViewset, basename='article')
+router.register('member', views.MemberModelViewSet, basename='member')
+router.register('group', views.GroupModelViewSet, basename='group')
+router.register('membership', views.MembershipModelViewSet, basename='membership')
+# router.register('create_membership', views.MembershipCreateAPIView, basename='create_mem')
 
 urlpatterns = [
     path('', include(router.urls)),
